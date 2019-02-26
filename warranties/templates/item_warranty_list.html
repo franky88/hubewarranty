@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h3>{{title|upper}}</h3>
+<br>
+<table id="datatable" class="table table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>Item Brand</th>
+			<th>Customer's Name</th>
+			<th>Serial Number</th>
+			<th>Date Purchased</th>
+			<th>Warranty End</th>
+			<th>Status</th>
+			<th>Details</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in itemwar %}
+		<tr>
+			<td>{{item.item_name|upper}}</td>
+			<td>{{item.customer_name|upper}}</td>
+			<td>{{item.serial_number}}</td>
+			<td>{{item.timestamp}}</td>
+			<td>{{item.item_warranty_end}}</td>
+			{% if item.item_warranty_end %}
+			<td>Under warranty</td>
+			{% else %}
+			<td>Warranty expired</td>
+			{% endif %}
+			<td><a href="{% url 'warranty:detail' item.id %}">Details</a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

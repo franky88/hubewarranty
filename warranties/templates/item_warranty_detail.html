@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h3>{{title|upper}}</h3>
+<br>
+<h4>Customer's name: <i>{{ instance.customer_name.full_name|title }}</i></h4>
+<h5>Item name: <i>{{ instance.item_name|upper }}</i></h5>
+<hr>
+<h4>Warranty History</h4>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Item Warranty</th>
+			<th>Customer's Name</th>
+			<th>Serial Number</th>
+			<th>Date Replaced</th>
+			<th>Warranty End</th>
+			<th>Remarks</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in instance.itemrma_set.all %}
+		<tr>
+			{% if item.serial_number %}
+				<td>{{forloop.counter}}</td>
+				<td>{{item.item_warranty|upper}}</td>
+				<td>{{item.customer_name|upper}}</td>
+				<td>{{item.serial_number|upper}}</td>
+				<td>{{item.timestamp}}</td>
+				<td>{{item.item_warranty_end}}</td>
+				<td>{{item.remarks|upper}}</td>
+				<td>Under warranty</td>
+			{% else %}
+				<td>Nothing to display!</td>
+			{% endif %}
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
