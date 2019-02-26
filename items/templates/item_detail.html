@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block content %}
 <h3>{{title|upper}}</h3>
@@ -7,13 +8,18 @@
 <div class="card mb-3" style="max-width: 100%;">
   <div class="row no-gutters">
     <div class="col-md-4">
-      <img src="..." class="card-img" alt="{{instance.item_photo}}">
+   		{% if instance.item_photo %}
+      	<img src="{{ instance.item_photo.url }}" class="card-img" alt="{{ instance.item_photo.url }}" style="width: 100%; height: auto;">
+      	{% else %}
+      	<img src="..." class="card-img" alt="Sample picture">
+    	{% endif %}
     </div>
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">{{instance.item_brand|upper}}</h5>
-        <p class="card-text">{{instance.item_name}} {%if instance.item_model%}{{instance.item_model}}{%else%}{%endif%}</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <p class="card-text">{{instance.item_name|upper}} {%if instance.item_model%}{{instance.item_model|upper}}{%else%}{%endif%}</p>
+        <p class="card-text">{{instance.item_desc}}</p>
+        <p class="card-text"><small class="text-muted">Warranty length {{instance.item_wrty_lngth|title}} months</small></p>
       </div>
     </div>
   </div>
