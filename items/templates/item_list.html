@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
-
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Item List</li>
+</ol>
+<hr>
+{% endblock %}
 {% block content %}
 <h3>{{title|upper}}</h3>
 <br>
@@ -28,4 +33,6 @@
 		{% endfor %}
 	</tbody>
 </table>
+<hr>
+<a href="{% url 'item:add' %}" class="btn btn-primary">Add Item</a>
 {% endblock %}
