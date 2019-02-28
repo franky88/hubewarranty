@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="{% url 'customer:list' %}">Customer List</a></li>
+  <li class="breadcrumb-item active">{{title|title}}</li>
+</ol>
+<hr>
+{% endblock %}
+{% block content %}
+<h3>{{title|upper}}</h3>
+<hr>
+<div class="card">
+  <h5 class="card-header">{{instance.full_name|title}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">List of warranted items</h5>
+    <p class="card-text">
+      <table id="datatable" class="table table-bordered table-striped table-sm">
+        <thead class="thead-dark">
+          <tr>
+            <th>#</th>
+            <th>Item name</th>
+            <th>Serial number</th>
+            <th>Date purchased</th>
+            <th>Expiration date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in instance.itemwarranty_set.all %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td><a href="{% url 'warranty:detail' item.id %}">{{item.item_name|upper}}</a></td>
+            <td>{{item.serial_number|upper}}</td>
+            <td>{{item.timestamp}}</td>
+            <td>{{item.item_warranty_end}}</td>
+            <td>{{item.warranty_status}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </p>
+<!--     <a href="#" class="btn btn-primary">Go somewhere</a> -->
+  </div>
+</div>
+{% endblock %}

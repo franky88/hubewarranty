@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^items/', include("items.urls")),
     url(r'^warranties/', include("warranties.urls")),
+    url(r'^customers/', include("customers.urls")),
 ]
 
 if settings.DEBUG:

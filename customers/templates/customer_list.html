@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Customer List</li>
+</ol>
+<hr>
+{% endblock %}
+{% block content %}
+<h3>{{title|upper}}</h3>
+<br>
+<table id="datatable" class="table table-striped table-sm">
+	<thead class="thead-dark">
+		<tr>
+			<th>#</th>
+			<th>Names</th>
+			<th>Contacts</th>
+			<th>Address</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for customer in customers %}
+		<tr>
+			<td>{{forloop.counter}}</td>
+			<td><a href="{% url 'customer:detail' customer.id %}">{{customer.full_name|upper}}</a></td>
+			<td>{{customer.contact_number|upper}}</td>
+			<td>{{item.address}}</td>
+			<td><a href=""><i class="far fa-edit"></i></a></td>
+			<td><a href="{% url 'customer:delete' customer.id %}"><span style="color: red;"><i class="fas fa-trash-alt"></i></span></a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<hr>
+<a href="{% url 'customer:add' %}" class="btn btn-primary btn-sm">Add Customer</a>
+{% endblock %}

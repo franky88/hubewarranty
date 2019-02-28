@@ -7,7 +7,7 @@ from .models import ItemName
 from .forms import ItemForm
 # Create your views here.
 def itemList(request):
-	item_name = ItemName.objects.all()
+	item_name = ItemName.objects.all().order_by("-timestamp")
 	render_template = "item_list.html"
 	context = {
 		"title": "item with warranties",

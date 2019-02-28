@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block breadcrumb %}
 <ol class="breadcrumb">
-  <li class="breadcrumb-item"><a href="{% url 'item:list' %}">Item List</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'warranty:list' %}">Warranty List</a></li>
   <li class="breadcrumb-item active">{{title|title}}</li>
 </ol>
 <hr>
@@ -11,9 +11,11 @@
 		<form action="" class="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
 			<div class="row">
 				<div class="col-sm-6">
-					<h3>Add Item Form</h3>
+					<h3>Add Warranty Item Form</h3>
 					<hr>
-					{{form|crispy}}	
+					<p>{{form.item_name|as_crispy_field}}</p>
+					<p>{{form.customer_name|as_crispy_field}}</p><a href="{% url 'customer:add' %}">Add Customer</a>
+					<p>{{form.serial_number|as_crispy_field}}</p>
 				</div>
 				<!-- <div class="vertical-line"></div> -->
 				<div class="col-sm-6">
@@ -26,7 +28,7 @@
 			</div>
 			<hr>
 			<input type="submit" class="btn btn-primary btn-sm" value="Add Item">
-			<a href="{% url 'item:list' %}" class="btn btn-danger btn-sm">Cancel</a>
+			<a href="{% url 'warranty:list' %}" class="btn btn-danger btn-sm">Cancel</a>
 		</form>
 		<br>
 		<br>
