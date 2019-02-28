@@ -2,9 +2,11 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse
 from django.contrib import messages
 from .models import ItemWarranty, ItemRMA
 from .forms import wrtyForm
+from .utils import render_to_pdf
 # Create your views here.
 def wrtyList(request):
 	item_warranty 		= ItemWarranty.objects.all().order_by("-timestamp")
@@ -23,6 +25,16 @@ def wrtyDetail(request, pk):
 		"instance": instance,
 	}
 	return render(request, render_template, context)
+
+def render_certificate(request, pk):
+	instance 			= get_object_or_404(ItemWarranty, pk=pk)
+	render_template 	= "warranty_certificate.html"
+	context				= {
+		"title": "warranty details",
+		"instance": instance,
+	}
+	pdf = render_to_pdf(render_template, context)
+	return HttpResponse(pdf, content_type='application/pdf')
 
 def wrtyAdd(request):
 	form = wrtyForm(request.POST or None, request.FILES or None)
