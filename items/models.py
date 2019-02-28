@@ -29,7 +29,7 @@ class ItemName(models.Model):
 	item_brand 		= models.CharField(max_length=120)
 	item_name		= models.CharField(max_length=120)
 	item_model		= models.CharField(max_length=120, null=True, blank=True)
-	item_desc		= models.TextField(max_length=120, null=True, blank=True)
+	item_desc		= models.TextField(max_length=120, null=True, blank=True, verbose_name="item description")
 	item_photo		= models.ImageField(null=True, blank=True, upload_to=image_upload_location)
 	item_wrty_lngth	= models.IntegerField(verbose_name="item warranty length", help_text="How many month?")
 	item_cat		= models.ForeignKey(ItemCategory, on_delete=models.CASCADE, verbose_name="item categories", default=1)
