@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'customers.apps.CustomersConfig',
     'items.apps.ItemsConfig',
     'warranties.apps.WarrantiesConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+LOGIN_URL = '/'
 
 ROOT_URLCONF = 'hubeservices.urls'
 
