@@ -1,0 +1,22 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+django = "==1.11.18"
+django-crispy-forms = "==1.7.2"
+html5lib = "==1.0.1"
+pypdf = "==1.13"
+pypdf2 = "==1.26.0"
+pytz = "==2018.9"
+reportlab = "==3.5.13"
+six = "==1.12.0"
+webencodings = "==0.5.1"
+xhtml2pdf = "==0.2.3"
+Pillow = "==5.4.1"
+
+[requires]
+python_version = "3.6"

@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
 # Create your views here.
 def userLogin(request):
-	next = request.GET.get('next', '/items')
+	next = request.GET.get('next', '/warranties')
 	render_template = "user_login.html"
 	if request.method == "POST":
 		username = request.POST['username']
